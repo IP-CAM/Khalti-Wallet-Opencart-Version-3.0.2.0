@@ -1,0 +1,66 @@
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
+    <!-- Place this where you need payment button -->
+    <button id="payment-button" style="background-color: #773292; color: #fff; border: none; padding: 5px 10px; border-radius: 2px">Pay with Khalti</button>
+    <!-- Place this where you need payment button -->
+    <!-- Paste this code anywhere in you body tag -->
+    <script>
+        var config = {
+            "publicKey": "{{khalti_public_key}}",
+            "productIdentity": "{{order_id}}",
+            "productName": "{{detail1_text}}",
+            "productUrl": "{{site_url}}",
+            "eventHandler": {
+                onSuccess (payload) {
+                    // hit merchant api for initiating verfication
+                    var token             = payload.token;
+                    var amount            = payload.amount;
+                    var product_identity  = payload.product_identity;
+                    window.location.href = '{{return_url}}&token='+token+'&amount='+amount+'&order_id='+product_identity;
+                },
+                onError (error) {
+                    console.log(error);
+                },
+                onClose () {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        var btn = document.getElementById("payment-button");
+        btn.onclick = function () {
+            checkout.show({amount: {{amount}}});
+            //window.location.href = '{{return_url}}?token=YLDVkepZniA9HMKpfJyW7j&amount=1500&order_id=28';
+        }
+    </script>
+{# <form action="{{ action }}" method="post">
+  <input type="hidden" name="pay_to_email" value="{{ pay_to_email }}" />
+  <input type="hidden" name="recipient_description" value="{{ description }}" />
+  <input type="hidden" name="transaction_id" value="{{ transaction_id }}" />
+  <input type="hidden" name="return_url" value="{{ return_url }}" />
+  <input type="hidden" name="cancel_url" value="{{ cancel_url }}" />
+  <input type="hidden" name="status_url" value="{{ status_url }}" />
+  <input type="hidden" name="language" value="{{ language }}" />
+  <input type="hidden" name="logo_url" value="{{ logo }}" />
+  <input type="hidden" name="pay_from_email" value="{{ pay_from_email }}" />
+  <input type="hidden" name="firstname" value="{{ firstname }}" />
+  <input type="hidden" name="lastname" value="{{ lastname }}" />
+  <input type="hidden" name="address" value="{{ address }}" />
+  <input type="hidden" name="address2" value="{{ address2 }}" />
+  <input type="hidden" name="phone_number" value="{{ phone_number }}" />
+  <input type="hidden" name="postal_code" value="{{ postal_code }}" />
+  <input type="hidden" name="city" value="{{ city }}" />
+  <input type="hidden" name="state" value="{{ state }}" />
+  <input type="hidden" name="country" value="{{ country }}" />
+  <input type="hidden" name="amount" value="{{ amount }}" />
+  <input type="hidden" name="currency" value="{{ currency }}" />
+  <input type="hidden" name="detail1_text" value="{{ detail1_text }}" />
+  <input type="hidden" name="merchant_fields" value="order_id" />
+  <input type="hidden" name="order_id" value="{{ order_id }}" />
+  <input type="hidden" name="platform" value="{{ platform }}" />
+  <div class="buttons">
+    <div class="pull-right">
+      <input type="submit" value="{{ button_confirm }}" class="btn btn-primary" />
+    </div>
+  </div>
+</form> #}
