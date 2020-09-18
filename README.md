@@ -11,5 +11,5 @@
 - Scroll the page and search for `Khalti` and click on green `+` button on the right side to install the plugin.
 - Click on the blue button with pencil icon to configure the plugin. 
 - Place your Public and Private keys provided by Khalti and finish the Plugin installation. 
-- include `<script>https://unpkg.com/khalti-checkout-web@latest/dist/khalti-checkout.iffe.js</script>` inside `<head></head>` tags on your themes header file which is located on `catalog/view/theme/YOUR_THEME_NAME/template/common/header.twig`
+- include `<script src="https://unpkg.com/khalti-checkout-web@latest/dist/khalti-checkout.iffe.js"></script>` inside `<head></head>` tags on your themes header file which is located on `catalog/view/theme/YOUR_THEME_NAME/template/common/header.twig`
 - clear Opencart cache

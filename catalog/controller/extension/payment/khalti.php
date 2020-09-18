@@ -65,7 +65,7 @@ class ControllerExtensionPaymentKhalti extends Controller {
 		$this->load->model('checkout/order');
 
 		$order_info = $this->model_checkout_order->getOrder($order_id);
-		// var_dump($order_info);	die();
+
 		if ($order_info) {
 			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('config_order_status_id'));
 
@@ -95,7 +95,7 @@ class ControllerExtensionPaymentKhalti extends Controller {
             'amount'  => $amount
            ));
 
-        $url = "https://khalti.com/api/payment/verify/";
+        $url = "https://khalti.com/api/v2/payment/verify/";
 
         # Make the call using API.
         $ch = curl_init();
@@ -134,7 +134,7 @@ class ControllerExtensionPaymentKhalti extends Controller {
 
     private function khalti_transaction($idx)
     {
-        $url = "https://khalti.com/api/merchant-transaction/$idx/";
+        $url = "https://khalti.com/api/v2/merchant-transaction/$idx/";
 
         # Make the call using API.
         $ch = curl_init();

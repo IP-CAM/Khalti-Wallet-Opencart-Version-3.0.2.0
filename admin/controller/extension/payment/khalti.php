@@ -191,7 +191,7 @@ class ControllerExtensionPaymentKhalti extends Controller
 
     private function getTransaction()
     {
-        $url = "https://khalti.com/api/merchant-transaction/";
+        $url = "https://khalti.com/api/v2/merchant-transaction/";
 
         # Make the call using API.
         $ch = curl_init();
@@ -212,7 +212,7 @@ class ControllerExtensionPaymentKhalti extends Controller
 
     private function getTransactionDetail($idx)
     {
-        $url = "https://khalti.com/api/merchant-transaction/{$idx}/";
+        $url = "https://khalti.com/api/v2/merchant-transaction/{$idx}/";
 
         # Make the call using API.
         $ch = curl_init();
@@ -234,7 +234,7 @@ class ControllerExtensionPaymentKhalti extends Controller
 
     private function khaltiRefund($idx)
     {
-        $url = "https://khalti.com/api/merchant-transaction/{$idx}/refund/";
+        $url = "https://khalti.com/api/v2/merchant-transaction/{$idx}/refund/";
         # Make the call using API.
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
